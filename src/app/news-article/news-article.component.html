@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row" *ngIf="newsData.length > 0">
+        <div class="col-md-3 p-2"
+            *ngFor="let o of newsData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+            <div class="card">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title">{{o.headline}}</h5>
+                    <p class="card-text cont">{{o.abstract}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">author : {{o.author}}</li>
+                    <li class="list-group-item">section : {{o.section}}</li>
+                </ul>
+                <div class="card-body">
+                    <a target="_blank" href="{{o.article_uri}}" class="card-link">{{o.article_uri}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="newsData.length > 0">
+        <div class="col-md-12">
+            <ngb-pagination [collectionSize]="8" [(page)]="page" [pageSize]="4" [maxSize]="2" [boundaryLinks]="true"
+                [rotate]="true" aria-label="Default pagination"
+                class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
+        </div>
+    </div>
+</div>
